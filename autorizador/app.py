@@ -55,7 +55,7 @@ def iniciar_sesion():
         password=str.encode(provided_password),
         hashed_password=str.encode(hash_contrasena_correcta),
     ):
-        return jsonify({"error": "Contraseña incorrecta."}), 401
+        return jsonify({"error": "Usuario o contraseña incorrectos."}), 401
     else:
         otp_generado = generar_otp()
         return (jsonify({"mensaje": "OTP generado con éxito", "otp": otp_generado}),200)

@@ -85,7 +85,7 @@ def ingresar_pqr():
 
 def validar_token(token):
     response = requests.post(
-        "http://127.0.0.1:8092/user/verificar_token",
+        "http://127.0.0.1:8091/user/verificar_token",
         json=json.dumps({"token": token}),
         headers={"Content-Type": "application/json"},
     )
