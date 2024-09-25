@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import fields
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+from datetime import datetime
 import requests
 import json
 
@@ -43,19 +44,53 @@ class PQRSchema(SQLAlchemyAutoSchema):
 pqr_schema = PQRSchema()
 
 # -----------------------------------------------------------
-# ------------------------ Endpoint  --------------------------
+# ------------------------ Endpoint  ------------------------
 # -----------------------------------------------------------
 
 # Endpoint para consulta de los PQRs
 @app.route("/pqr", methods=["GET"])
 def consulta_pqr():
-    
     token = request.headers.get("Authorization").split(" ")[1]
+    response = validar_token(token)
+    if response.status_code == 401 or response.status_code == 403:
+        return jsonify({"error": "Acceso no autorizado a la información de PQRs"}), 401
+    else:
+        return [pqr_schema.dump(pqr) for pqr in PQR.query.all()], 200
+
+# Endpoint para ingresar un PQR
+@app.route("/pqr", methods=["POST"])
+def ingresar_pqr():
+    token = request.headers.get("Authorization").split(" ")[1]
+    response = validar_token(token)
+    if response.status_code == 401 or response.status_code == 403:
+        return jsonify({"error": "Acceso no autorizado a la información de PQRs"}), 401
+    
+    try:
+        nuevo_pqr = PQR(titulo=request.json["titulo"],
+                        descripcion=request.json["descripcion"],
+                        solicitante=request.json["solicitante"],
+                        fecha=datetime.now(),
+                        activo=True,
+                        severidad=request.json["severidad"])
+        db.session.add(nuevo_pqr)
+        db.session.commit()
+        return pqr_schema.dump(nuevo_pqr)
+    except ValueError as ve:
+        return f'Ha ocurrido un error al ingresar el PRQ., detalles: {ve}', 400
+    except Exception as e:
+        return f'Ha ocurrido un error al ingresar el PRQ., detalles: {e}', 500
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8091)
+
+
+def validar_token(token):
     response = requests.post(
         "http://127.0.0.1:8092/user/verificar_token",
         json=json.dumps({"token": token}),
         headers={"Content-Type": "application/json"},
     )
+
     if response.status_code == 401 or response.status_code == 403:
         return jsonify({"error": "Acceso no autorizado a la informacion de PQRs"}), 401
     else:
