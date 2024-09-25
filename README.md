@@ -15,7 +15,16 @@ Para poder utilizar este proyecto necesitas:
 ## Estructura
 
 ```
-
+📦 Experimento.
+│   .gitignore
+│   README.md
+│   requirements.txt
+├───autorizador
+│   └─ app.py
+├───receptor_de_pqrs
+│   └─ app.py
+└───registro
+    └─ app.py
 ```
 
 
@@ -53,7 +62,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     cd registro
     ```
     ```
-    flask run
+    flask run --port=8090
     ```
 2. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio del Autorizador`:
 
@@ -64,7 +73,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     cd autorizador
     ```
     ```
-    flask run
+    flask run --port=8091
     ```
 
 3. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio de Receptor de PQRS`:
@@ -76,7 +85,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     cd receptor_de_pqrs
     ```
     ```
-    flask run
+    flask run --port=8092
     ```
 
 
@@ -108,7 +117,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     cd registro
     ```
     ```
-    flask run
+    flask run --port=8090
     ```
 2. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio del Autorizador`:
 
@@ -119,7 +128,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     cd autorizador
     ```
     ```
-    flask run
+    flask run --port=8091
     ```
 
 3. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio de Receptor de PQRS`:
@@ -131,7 +140,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     cd receptor_de_pqrs
     ```
     ```
-    flask run
+    flask run --port=8092
     ```
 
 ## License
