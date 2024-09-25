@@ -96,4 +96,4 @@ def verificar_token():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8092)
+    app.run(debug=True, port=8091)
