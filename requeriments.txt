@@ -3,3 +3,5 @@ SQLAlchemy
 requests
 bcrypt
 PyJWT
+Flask-RESTful
+Flask-SQLAlchemy
