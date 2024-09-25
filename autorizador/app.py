@@ -46,20 +46,23 @@ def iniciar_sesion():
         "http://127.0.0.1:8090/user/encrypt",
         params={"username": info.get("username")},
     )  # Reemplazar con la URL real del servicio de registro
-    hash_contrasena_correcta = respuesta.json().get("hash")
 
+    hash_contrasena_correcta = respuesta.json().get("hash")
+    if not hash_contrasena_correcta:
+        return jsonify({"error": "No se encontró el usuario en la base de datos."}), 404
+        
     if not provided_password or not bcrypt.checkpw(
         password=str.encode(provided_password),
         hashed_password=str.encode(hash_contrasena_correcta),
     ):
-        return jsonify({"error": "Contraseña incorrecta"}), 401
+        return jsonify({"error": "Contraseña incorrecta."}), 401
     else:
         otp_generado = generar_otp()
-        return (jsonify({"mensaje": "OTP generado con éxito", "otp": otp_generado}),200,)
+        return (jsonify({"mensaje": "OTP generado con éxito", "otp": otp_generado}),200)
 
 
 # Endpoint para verificar el OTP
-@app.route("/verificar_otp", methods=["POST"])
+@app.route("/user/verificar_otp", methods=["POST"])
 def verificar_otp():
     global otp_generado
 
@@ -78,7 +81,7 @@ def verificar_otp():
 
 
 # Endpoint para verificar el token
-@app.route("/verificar_token", methods=["POST"])
+@app.route("/user/verificar_token", methods=["POST"])
 def verificar_token():
     datos = request.get_json()
     token_proporcionado = json.loads(datos).get("token")

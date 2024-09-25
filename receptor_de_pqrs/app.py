@@ -5,10 +5,8 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 import requests
 import json
 
-
-
 # -----------------------------------------------------------
-# ------------------------ Configuración Inicial ------------
+# -------------------- Configuración Inicial ----------------
 # -----------------------------------------------------------
 
 app = Flask(__name__)
@@ -52,9 +50,9 @@ pqr_schema = PQRSchema()
 @app.route("/pqr", methods=["GET"])
 def consulta_pqr():
     
-    token = request.json["token"]
+    token = request.headers.get("Authorization").split(" ")[1]
     response = requests.post(
-        "http://127.0.0.1:8092/verificar_token",
+        "http://127.0.0.1:8092/user/verificar_token",
         json=json.dumps({"token": token}),
         headers={"Content-Type": "application/json"},
     )
