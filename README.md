@@ -143,7 +143,7 @@ Las instrucciones para ejecutar el proyecto se muestran a continuación:
     flask run --port=8092
     ```
 
-## Pruebas para revisar la disponibilidad (Seguridad)
+## Pruebas para revisar la Seguridad
 
 Se verificará que el experimento cumple con la seguridad esperada, para ello siga las siguientes instrucciones:
 
