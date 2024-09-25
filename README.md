@@ -26,6 +26,59 @@ Para poder utilizar este proyecto necesitas:
 | receptor_de_pqrs | Microservicio encargado de guardar y obtener la información confidencial de los PQRs **(se necesita un token válido del autorizador para poder utilizarlo)**. |
 | requirements.txt | Archivo donde se detallan las dependencias necesarias para ejecutar el proyecto. |
 
+## Instalación (Linux/MacOS)
+
+Ubicarse en la raíz del proyecto dónde se encuentra el archivo [README.md](README.md), abrir una terminal y ejecutar los siguientes comandos:
+```
+python -m venv venv
+```
+```
+. venv/bin/activate
+```
+```
+pip install -r requirements.txt
+```
+
+## ¿Cómo ejecutar el proyecto? (Linux/MacOS)
+
+Las instrucciones para ejecutar el proyecto se muestran a continuación:
+
+
+1. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio de Registro`:
+
+    ```    
+    . venv/bin/activate
+    ```
+    ```
+    cd registro
+    ```
+    ```
+    flask run
+    ```
+2. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio del Autorizador`:
+
+    ```
+    . venv/bin/activate
+    ```
+    ```
+    cd autorizador
+    ```
+    ```
+    flask run
+    ```
+
+3. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos para ejecutar el `Microservicio de Receptor de PQRS`:
+
+    ```
+    . venv/bin/activate
+    ```
+    ```
+    cd receptor_de_pqrs
+    ```
+    ```
+    flask run
+    ```
+
 
 ## Instalación (Windows)
 
