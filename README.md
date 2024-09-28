@@ -217,7 +217,7 @@ Se verificará que el experimento cumple con la seguridad esperada, para ello si
 
     **Nota:** Si vemos el paso 6, podemos darnos cuenta de que al momento de la ejecución no existía ningún PQR y por eso nos retornaba una lista vacia. Si creamos un PQR y volvemos a realizar este paso, podemos evidenciar la integridad de la información.
 
-## Análisis y denmostracion del expermiento
+## Análisis y demostracion del expermiento
  https://github.com/user-attachments/assets/f1da33d7-6d99-4304-ac0a-e6c43b54c9c3
 
 ## Conclusión
